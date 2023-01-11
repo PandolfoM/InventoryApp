@@ -39,12 +39,7 @@ struct CategoryView: View {
                 .cornerRadius(10)
                 .frame(maxWidth: 170, alignment: .trailing)
             } else {
-              Image(systemName: "photo")
-                .renderingMode(.original)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(10)
-                .frame(maxWidth: 170, alignment: .trailing)
+              Spacer()
             }
           }
           .swipeActions(edge: .leading) {
