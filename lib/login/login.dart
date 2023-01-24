@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:stockify/services/auth.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -21,9 +22,11 @@ class LoginScreen extends StatelessWidget {
                 if (snapshot.data == true) {
                   return SignInWithAppleButton(
                     onPressed: () {
-                      print('pressed');
+                      AuthService().signInWithApple();
                     },
                   );
+                } else {
+                  return Container();
                 }
               },
             )
