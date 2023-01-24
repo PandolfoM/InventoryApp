@@ -1,4 +1,4 @@
-package com.example.stockify
+package com.mattpandolfo.InventoryApp
 
 import io.flutter.embedding.android.FlutterActivity
 
