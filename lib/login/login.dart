@@ -86,7 +86,10 @@ class LoginButton extends StatelessWidget {
         label: Text(
           text,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 18.0),
+          style: const TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:stockify/routes.dart';
+import 'package:stockify/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +27,7 @@ class Stockify extends StatelessWidget {
           return Container(
             child: MaterialApp(
               routes: appRoutes,
+              theme: appTheme,
             ),
           );
         }

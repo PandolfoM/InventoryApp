@@ -13,6 +13,9 @@ class InventoryScreen extends StatelessWidget {
         title: const Text('Inventory'),
       ),
       drawer: const InventoryDrawer(),
+      body: ListView.separated(
+        shrinkWrap: true,
+      ),
     );
   }
 }
