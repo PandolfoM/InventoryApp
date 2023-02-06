@@ -13,7 +13,6 @@ struct CategoryView: View {
   var category = ""
 
   init(filter: String, category: String) {
-    print(category)
     _items = FetchRequest<Item>(sortDescriptors: [SortDescriptor(\.name)], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
     self.category = category
   }
