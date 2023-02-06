@@ -14,7 +14,7 @@ struct CategoryView: View {
 
   init(filter: String, category: String) {
     print(category)
-    _items = FetchRequest<Item>(sortDescriptors: [], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
+    _items = FetchRequest<Item>(sortDescriptors: [SortDescriptor(\.name)], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
     self.category = category
   }
 
