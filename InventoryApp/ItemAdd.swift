@@ -9,12 +9,11 @@ import PhotosUI
 import SwiftUI
 
 struct ItemAdd: View {
-  var category: Category
-  @EnvironmentObject var data: InventoryItems
   @Environment(\.dismiss) var dismiss
+  @Environment(\.managedObjectContext) var moc
 
   @State private var itemName = ""
-  @State private var itemCount: Int = 1
+  @State private var itemCount: Int16 = 1
   @State private var selectedItem: PhotosPickerItem?
   @State private var selectedPhotoData: Data?
 
@@ -26,7 +25,7 @@ struct ItemAdd: View {
         }
 
         Section("Quantity") {
-          Stepper("Quanity: \(itemCount)", value: $itemCount, in: 1 ... 999999)
+          Stepper("Quanity: \(itemCount)", value: $itemCount, in: 1 ... 32767)
         }
 
         Section("Image") {
@@ -56,7 +55,13 @@ struct ItemAdd: View {
           if itemName == "" {
             return
           }
-          data.addItem(itemName, itemCount: itemCount, image: selectedPhotoData, category: category)
+          let item = Item(context: moc)
+          item.name = itemName
+          item.count = itemCount
+          item.image = selectedPhotoData
+          item.origin = Category(context: moc)
+          item.origin?.name = "Lego"
+          try? moc.save()
           dismiss()
         }
       }
@@ -66,9 +71,6 @@ struct ItemAdd: View {
 
 struct ItemAdd_Previews: PreviewProvider {
   static var previews: some View {
-    ItemAdd(category: Category(name: "Lego", items: [
-      Item(name: "UCS Star Destroyer", count: 1),
-      Item(name: "UCS Gunship", count: 3),
-    ]))
+    ItemAdd()
   }
 }

@@ -9,14 +9,14 @@ import SwiftUI
 
 @main
 struct InventoryApp: App {
-  @StateObject var data = InventoryItems()
+  @StateObject private var dataController = DataController()
 
   var body: some Scene {
     WindowGroup {
       NavigationStack {
-        ContentView(currentGroup: Category(name: "", items: []))
+        ContentView()
           .navigationTitle("Inventory")
-      }.environmentObject(data)
+      }.environment(\.managedObjectContext, dataController.container.viewContext)
     }
   }
 }

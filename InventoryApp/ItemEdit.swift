@@ -9,63 +9,72 @@ import PhotosUI
 import SwiftUI
 
 struct ItemEdit: View {
-  var category: Category
-  @State var item: Item
-  @EnvironmentObject var data: InventoryItems
+  @Environment(\.managedObjectContext) var moc
   @Environment(\.dismiss) var dismiss
-
+  @FetchRequest var items: FetchedResults<Item>
   @State private var itemName = ""
-  @State private var itemCount: Int = 1
+  @State private var itemCount: Int16 = 1
   @State private var selectedItem: PhotosPickerItem?
   @State private var selectedPhotoData: Data?
+
+  init(filter: String) {
+    print(filter)
+    _items = FetchRequest<Item>(sortDescriptors: [], predicate: NSPredicate(format: "name == %@", filter))
+  }
 
   var body: some View {
     VStack {
       Form {
-        Section("Item Name") {
-          TextField("Name", text: $itemName)
-            .onAppear {
-              self.itemName = item.name
-            }
-        }
-
-        Section("Quantity") {
-          Stepper("Quanity: \(itemCount)", value: $itemCount, in: 1 ... 999999)
-            .onAppear {
-              self.itemCount = item.count
-            }
-        }
-
-        Section("Image") {
-          PhotosPicker(selection: $selectedItem, matching: .images) {
-            Label("Select a photo", systemImage: "photo")
+        ForEach(items, id: \.self) { item in
+          Section("Item Name") {
+            TextField("Name", text: $itemName)
+              .onAppear {
+                self.itemName = item.wrappedName
+              }
           }
-          .onChange(of: selectedItem) { newItem in
-            Task {
-              if let data = try? await newItem?.loadTransferable(type: Data.self) {
-                selectedPhotoData = data
+
+          Section("Quantity") {
+            Stepper("Quanity: \(itemCount)", value: $itemCount, in: 1 ... 32767)
+              .onAppear {
+                self.itemCount = item.count
+              }
+          }
+
+          Section("Image") {
+            PhotosPicker(selection: $selectedItem, matching: .images) {
+              Label("Select a photo", systemImage: "photo")
+            }
+            .onChange(of: selectedItem) { newItem in
+              Task {
+                if let data = try? await newItem?.loadTransferable(type: Data.self) {
+                  selectedPhotoData = data
+                }
               }
             }
-          }
-          .onAppear {
-            self.selectedPhotoData = item.image
+            .onAppear {
+              self.selectedPhotoData = item.image
+            }
+
+            if let selectedPhotoData,
+               let image = UIImage(data: selectedPhotoData)
+            {
+              Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .clipped()
+                .frame(maxHeight: 200)
+            }
           }
 
-          if let selectedPhotoData,
-             let image = UIImage(data: selectedPhotoData)
-          {
-            Image(uiImage: image)
-              .resizable()
-              .scaledToFit()
-              .clipped()
-              .frame(maxHeight: 200)
-          }
-        }
+          Button("Edit Item") {
+            if itemName == "" { return }
+            item.name = itemName
+            item.count = itemCount
+            item.image = selectedPhotoData
 
-        Button("Edit Item") {
-          if itemName == "" { return }
-          data.updateItem(itemName, itemCount: itemCount, image: selectedPhotoData, category: category, item: item)
-          dismiss()
+            try? moc.save()
+            dismiss()
+          }
         }
       }
     }
@@ -74,9 +83,6 @@ struct ItemEdit: View {
 
 struct ItemEdit_Previews: PreviewProvider {
   static var previews: some View {
-    ItemEdit(category: Category(name: "Lego", items: [
-      Item(name: "UCS Star Destroyer", count: 1),
-      Item(name: "UCS Gunship", count: 3),
-    ]), item: Item(name: "UCS Star Destroyer", count: 3))
+    ItemEdit(filter: "Gunship")
   }
 }

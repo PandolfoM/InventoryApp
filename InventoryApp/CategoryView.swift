@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct CategoryView: View {
-  var category: Category
-  @EnvironmentObject var data: InventoryItems
+  @Environment(\.managedObjectContext) var moc
+  @FetchRequest var items: FetchedResults<Item>
   @State private var isPresented = false
   @State private var itemName = ""
   @State private var isFullscreen = false
 
+  init(filter: String) {
+    _items = FetchRequest<Item>(sortDescriptors: [], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
+  }
+
   var body: some View {
-    List {
-      if category.items.count > 0 {
-        ForEach(category.items) { item in
+    VStack {
+      List {
+        ForEach(items, id: \.self) { item in
           HStack {
             VStack {
               Text("x\(item.count)")
@@ -25,7 +29,7 @@ struct CategoryView: View {
                 .frame(width: 170, alignment: .leading)
                 .font(.subheadline)
               Spacer()
-              Text(item.name)
+              Text(item.name ?? "Unknown")
                 .frame(width: 170, alignment: .leading)
                 .font(.headline)
               Spacer()
@@ -44,24 +48,24 @@ struct CategoryView: View {
           }
           .swipeActions(edge: .leading) {
             NavigationLink("Edit") {
-              ItemEdit(category: category, item: item)
+              ItemEdit(filter: item.wrappedName)
                 .navigationTitle("Edit Item")
                 .navigationBarTitleDisplayMode(.inline)
             }
             .tint(.green)
           }
         }
-        .onDelete { indexSet in
-          data.deleteItem(indexSet, category: category)
-        }
-      } else {
-        Text("No Items")
-          .font(.largeTitle)
+        .onDelete(perform: deleteItem)
       }
-    }.toolbar {
+    }
+    .toolbar {
+      ToolbarItem {
+        EditButton()
+      }
+
       ToolbarItem {
         NavigationLink {
-          ItemAdd(category: category)
+          ItemAdd()
             .navigationTitle("Add Item")
             .navigationBarTitleDisplayMode(.inline)
         } label: {
@@ -70,13 +74,19 @@ struct CategoryView: View {
       }
     }
   }
+
+  func deleteItem(at offsets: IndexSet) {
+    for offset in offsets {
+      let item = items[offset]
+      moc.delete(item)
+    }
+
+    try? moc.save()
+  }
 }
 
 struct Previews_CategoryView_Previews: PreviewProvider {
   static var previews: some View {
-    CategoryView(category: Category(name: "Lego", items: [
-      Item(name: "UCS Star Destroyer"),
-      Item(name: "Repiblic Gunship"),
-    ]))
+    CategoryView(filter: "")
   }
 }

@@ -7,18 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71AFAEFA298DE9230065DD3C /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */; };
+		71AFAEFB298DE9230065DD3C /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */; };
+		71AFAEFC298DE9230065DD3C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF8298DE9230065DD3C /* Item+CoreDataClass.swift */; };
+		71AFAEFD298DE9230065DD3C /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF9298DE9230065DD3C /* Item+CoreDataProperties.swift */; };
+		71CD854D298DA17C001D202D /* Stockify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71CD854B298DA17C001D202D /* Stockify.xcdatamodeld */; };
+		71CD854F298DA203001D202D /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CD854E298DA203001D202D /* DataController.swift */; };
 		71DF7366296DD32A0033C6EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71DF7365296DD32A0033C6EF /* Assets.xcassets */; };
 		71DF7369296DD32A0033C6EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71DF7368296DD32A0033C6EF /* Preview Assets.xcassets */; };
 		71DF7375296DD4170033C6EF /* ItemEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF736F296DD4170033C6EF /* ItemEdit.swift */; };
 		71DF7376296DD4170033C6EF /* InventoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7370296DD4170033C6EF /* InventoryApp.swift */; };
 		71DF7377296DD4170033C6EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7371296DD4170033C6EF /* ContentView.swift */; };
 		71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7372296DD4170033C6EF /* CategoryView.swift */; };
-		71DF7379296DD4170033C6EF /* InventoryItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7373296DD4170033C6EF /* InventoryItems.swift */; };
 		71DF737A296DD4170033C6EF /* ItemAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7374296DD4170033C6EF /* ItemAdd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		71667853296E3CE9003E6805 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		71AFAEF8298DE9230065DD3C /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		71AFAEF9298DE9230065DD3C /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		71CD854C298DA17C001D202D /* Stockify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Stockify.xcdatamodel; sourceTree = "<group>"; };
+		71CD854E298DA203001D202D /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		71DF735E296DD3290033C6EF /* InventoryApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InventoryApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71DF7365296DD32A0033C6EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		71DF7368296DD32A0033C6EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -26,7 +37,6 @@
 		71DF7370296DD4170033C6EF /* InventoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryApp.swift; sourceTree = "<group>"; };
 		71DF7371296DD4170033C6EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		71DF7372296DD4170033C6EF /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		71DF7373296DD4170033C6EF /* InventoryItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryItems.swift; sourceTree = "<group>"; };
 		71DF7374296DD4170033C6EF /* ItemAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAdd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,12 +71,17 @@
 			isa = PBXGroup;
 			children = (
 				71667853296E3CE9003E6805 /* Info.plist */,
+				71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */,
+				71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */,
+				71AFAEF8298DE9230065DD3C /* Item+CoreDataClass.swift */,
+				71AFAEF9298DE9230065DD3C /* Item+CoreDataProperties.swift */,
 				71DF7372296DD4170033C6EF /* CategoryView.swift */,
 				71DF7371296DD4170033C6EF /* ContentView.swift */,
 				71DF7370296DD4170033C6EF /* InventoryApp.swift */,
-				71DF7373296DD4170033C6EF /* InventoryItems.swift */,
 				71DF7374296DD4170033C6EF /* ItemAdd.swift */,
 				71DF736F296DD4170033C6EF /* ItemEdit.swift */,
+				71CD854B298DA17C001D202D /* Stockify.xcdatamodeld */,
+				71CD854E298DA203001D202D /* DataController.swift */,
 				71DF7365296DD32A0033C6EF /* Assets.xcassets */,
 				71DF7367296DD32A0033C6EF /* Preview Content */,
 			);
@@ -151,11 +166,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71AFAEFC298DE9230065DD3C /* Item+CoreDataClass.swift in Sources */,
 				71DF7375296DD4170033C6EF /* ItemEdit.swift in Sources */,
+				71AFAEFB298DE9230065DD3C /* Category+CoreDataProperties.swift in Sources */,
+				71AFAEFA298DE9230065DD3C /* Category+CoreDataClass.swift in Sources */,
 				71DF7376296DD4170033C6EF /* InventoryApp.swift in Sources */,
 				71DF7377296DD4170033C6EF /* ContentView.swift in Sources */,
+				71CD854D298DA17C001D202D /* Stockify.xcdatamodeld in Sources */,
 				71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */,
-				71DF7379296DD4170033C6EF /* InventoryItems.swift in Sources */,
+				71CD854F298DA203001D202D /* DataController.swift in Sources */,
+				71AFAEFD298DE9230065DD3C /* Item+CoreDataProperties.swift in Sources */,
 				71DF737A296DD4170033C6EF /* ItemAdd.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +393,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		71CD854B298DA17C001D202D /* Stockify.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				71CD854C298DA17C001D202D /* Stockify.xcdatamodel */,
+			);
+			currentVersion = 71CD854C298DA17C001D202D /* Stockify.xcdatamodel */;
+			path = Stockify.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 71DF7356296DD3290033C6EF /* Project object */;
 }
