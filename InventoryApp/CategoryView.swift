@@ -10,12 +10,12 @@ import SwiftUI
 struct CategoryView: View {
   @Environment(\.managedObjectContext) var moc
   @FetchRequest var items: FetchedResults<Item>
-  @State private var isPresented = false
-  @State private var itemName = ""
-  @State private var isFullscreen = false
+  var category = ""
 
-  init(filter: String) {
+  init(filter: String, category: String) {
+    print(category)
     _items = FetchRequest<Item>(sortDescriptors: [], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
+    self.category = category
   }
 
   var body: some View {
@@ -64,13 +64,14 @@ struct CategoryView: View {
       }
 
       ToolbarItem {
-        NavigationLink {
-          ItemAdd()
+        NavigationLink(
+          destination: ItemAdd(category: category)
             .navigationTitle("Add Item")
-            .navigationBarTitleDisplayMode(.inline)
-        } label: {
-          Image(systemName: "plus")
-        }
+            .navigationBarTitleDisplayMode(.inline),
+          label: {
+            Image(systemName: "plus")
+          }
+        )
       }
     }
   }
@@ -87,6 +88,6 @@ struct CategoryView: View {
 
 struct Previews_CategoryView_Previews: PreviewProvider {
   static var previews: some View {
-    CategoryView(filter: "")
+    CategoryView(filter: "", category: "")
   }
 }

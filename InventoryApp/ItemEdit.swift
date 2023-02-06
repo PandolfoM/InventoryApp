@@ -18,7 +18,6 @@ struct ItemEdit: View {
   @State private var selectedPhotoData: Data?
 
   init(filter: String) {
-    print(filter)
     _items = FetchRequest<Item>(sortDescriptors: [], predicate: NSPredicate(format: "name == %@", filter))
   }
 

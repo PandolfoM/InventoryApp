@@ -12,6 +12,7 @@ struct ItemAdd: View {
   @Environment(\.dismiss) var dismiss
   @Environment(\.managedObjectContext) var moc
 
+  var category: String
   @State private var itemName = ""
   @State private var itemCount: Int16 = 1
   @State private var selectedItem: PhotosPickerItem?
@@ -60,7 +61,7 @@ struct ItemAdd: View {
           item.count = itemCount
           item.image = selectedPhotoData
           item.origin = Category(context: moc)
-          item.origin?.name = "Lego"
+          item.origin?.name = category
           try? moc.save()
           dismiss()
         }
@@ -71,6 +72,6 @@ struct ItemAdd: View {
 
 struct ItemAdd_Previews: PreviewProvider {
   static var previews: some View {
-    ItemAdd()
+    ItemAdd(category: "Lego")
   }
 }

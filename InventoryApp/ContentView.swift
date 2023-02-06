@@ -22,7 +22,7 @@ struct ContentView: View {
         Section("My Collections") {
           ForEach(categories, id: \.self) { category in
             NavigationLink {
-              CategoryView(filter: category.wrappedName)
+              CategoryView(filter: category.wrappedName, category: category.wrappedName)
                 .navigationTitle(category.wrappedName)
             } label: {
               HStack {
