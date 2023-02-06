@@ -20,58 +20,85 @@ struct CategoryView: View {
 
   var body: some View {
     VStack {
-      List {
-        ForEach(items, id: \.self) { item in
-          HStack {
-            VStack {
-              Text("x\(item.count)")
-                .foregroundColor(.blue)
-                .frame(width: 170, alignment: .leading)
-                .font(.subheadline)
+      if items.count > 0 {
+        List {
+          ForEach(items, id: \.self) { item in
+            HStack {
+              VStack {
+                Text("x\(item.count)")
+                  .foregroundColor(.blue)
+                  .frame(width: 170, alignment: .leading)
+                  .font(.subheadline)
+                Spacer()
+                Text(item.name ?? "Unknown")
+                  .frame(width: 170, alignment: .leading)
+                  .font(.headline)
+                Spacer()
+              }
               Spacer()
-              Text(item.name ?? "Unknown")
-                .frame(width: 170, alignment: .leading)
-                .font(.headline)
-              Spacer()
+              if item.image != nil {
+                Image(uiImage: UIImage(data: item.image!)!)
+                  .renderingMode(.original)
+                  .resizable()
+                  .scaledToFit()
+                  .cornerRadius(10)
+                  .frame(maxWidth: 170, alignment: .trailing)
+              } else {
+                Spacer()
+              }
             }
-            Spacer()
-            if item.image != nil {
-              Image(uiImage: UIImage(data: item.image!)!)
-                .renderingMode(.original)
-                .resizable()
-                .scaledToFit()
-                .cornerRadius(10)
-                .frame(maxWidth: 170, alignment: .trailing)
-            } else {
-              Spacer()
+            .swipeActions(edge: .leading) {
+              NavigationLink("Edit") {
+                ItemEdit(filter: item.wrappedName)
+                  .navigationTitle("Edit Item")
+                  .navigationBarTitleDisplayMode(.inline)
+              }
+              .tint(.green)
             }
           }
-          .swipeActions(edge: .leading) {
-            NavigationLink("Edit") {
-              ItemEdit(filter: item.wrappedName)
-                .navigationTitle("Edit Item")
-                .navigationBarTitleDisplayMode(.inline)
-            }
-            .tint(.green)
+          .onDelete(perform: deleteItem)
+        }
+        .toolbar {
+          ToolbarItem {
+            EditButton()
+          }
+
+          ToolbarItem {
+            NavigationLink(
+              destination: ItemAdd(category: category)
+                .navigationTitle("Add Item")
+                .navigationBarTitleDisplayMode(.inline),
+              label: {
+                Image(systemName: "plus")
+              }
+            )
           }
         }
-        .onDelete(perform: deleteItem)
-      }
-    }
-    .toolbar {
-      ToolbarItem {
-        EditButton()
-      }
-
-      ToolbarItem {
-        NavigationLink(
-          destination: ItemAdd(category: category)
-            .navigationTitle("Add Item")
-            .navigationBarTitleDisplayMode(.inline),
-          label: {
-            Image(systemName: "plus")
+      } else {
+        VStack {
+          Text("No Items").font(.largeTitle).fontWeight(.medium)
+          NavigationLink(
+            destination: ItemAdd(category: category)
+              .navigationTitle("Add Item")
+              .navigationBarTitleDisplayMode(.inline),
+            label: {
+              Text("Add Item")
+                .font(.title3)
+            }
+          )
+        }
+        .toolbar {
+          ToolbarItem {
+            NavigationLink(
+              destination: ItemAdd(category: category)
+                .navigationTitle("Add Item")
+                .navigationBarTitleDisplayMode(.inline),
+              label: {
+                Image(systemName: "plus")
+              }
+            )
           }
-        )
+        }
       }
     }
   }

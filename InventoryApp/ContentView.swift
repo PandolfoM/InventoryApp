@@ -18,95 +18,105 @@ struct ContentView: View {
 
   var body: some View {
     VStack {
-      List {
-        Section("My Collections") {
-          ForEach(categories, id: \.self) { category in
-            NavigationLink {
-              CategoryView(filter: category.wrappedName, category: category.wrappedName)
-                .navigationTitle(category.wrappedName)
+      if categories.count > 0 {
+        List {
+          Section("My Collections") {
+            ForEach(categories, id: \.self) { category in
+              NavigationLink {
+                CategoryView(filter: category.wrappedName, category: category.wrappedName)
+                  .navigationTitle(category.wrappedName)
+              } label: {
+                HStack {
+                  Text(category.wrappedName)
+                  Spacer()
+                  Text("\(category.itemArray.count)")
+                }
+              }
+            }
+            .onDelete(perform: deleteItem)
+            .swipeActions(edge: .leading) {
+              Button("Edit") {
+                isPresented2.toggle()
+              }
+              .tint(.green)
+            }
+          }
+        }
+        .alert("Edit Collection", isPresented: $isPresented2, actions: {
+          TextField("Name", text: $categoryName)
+
+          Button("Edit") {
+            if categoryName == "" {
+              return
+            }
+            categoryName = ""
+          }
+          Button("Cancel", role: .cancel, action: {})
+        }, message: {
+          Text("Please enter a collection name")
+        })
+        .toolbar {
+          ToolbarItem(placement: .navigationBarLeading) {
+            EditButton()
+          }
+
+          ToolbarItem {
+            Button {
+              isPresented = true
             } label: {
-              HStack {
-                Text(category.wrappedName)
-                Spacer()
-                Text("\(category.itemArray.count)")
+              Image(systemName: "plus")
+            }
+            .alert("Create Collection", isPresented: $isPresented, actions: {
+              TextField("Name", text: $categoryName)
+
+              Button("Create") {
+                if categoryName == "" {
+                  return
+                }
+                let category = Category(context: moc)
+                category.name = categoryName
+                categoryName = ""
+                try? moc.save()
               }
-            }
+              Button("Cancel", role: .cancel, action: {})
+            }, message: {
+              Text("Please enter a collection name")
+            })
           }
-          .onDelete(perform: deleteItem)
-          .swipeActions(edge: .leading) {
-            Button("Edit") {
-              isPresented2.toggle()
+        }
+      } else {
+        VStack {
+          Text("No Collections").font(.largeTitle).fontWeight(.medium)
+          Button("Add Collection") {
+            isPresented.toggle()
+          }.font(.title3)
+        }
+        .toolbar {
+          ToolbarItem {
+            Button {
+              isPresented = true
+            } label: {
+              Image(systemName: "plus")
             }
-            .tint(.green)
+            .alert("Create Collection", isPresented: $isPresented, actions: {
+              TextField("Name", text: $categoryName)
+
+              Button("Create") {
+                if categoryName == "" {
+                  return
+                }
+                let category = Category(context: moc)
+                category.name = categoryName
+                categoryName = ""
+                try? moc.save()
+              }
+              Button("Cancel", role: .cancel, action: {})
+            }, message: {
+              Text("Please enter a collection name")
+            })
           }
         }
       }
-      .alert("Edit Collection", isPresented: $isPresented2, actions: {
-        TextField("Name", text: $categoryName)
-
-        Button("Edit") {
-          if categoryName == "" {
-            return
-          }
-          categoryName = ""
-        }
-        Button("Cancel", role: .cancel, action: {})
-      }, message: {
-        Text("Please enter a collection name")
-      })
-      .toolbar {
-        ToolbarItem(placement: .navigationBarLeading) {
-          EditButton()
-        }
-
-        ToolbarItem {
-          Button {
-            isPresented = true
-          } label: {
-            Image(systemName: "plus")
-          }
-          .alert("Create Collection", isPresented: $isPresented, actions: {
-            TextField("Name", text: $categoryName)
-
-            Button("Create") {
-              if categoryName == "" {
-                return
-              }
-              let category = Category(context: moc)
-              category.name = categoryName
-              categoryName = ""
-              try? moc.save()
-            }
-            Button("Cancel", role: .cancel, action: {})
-          }, message: {
-            Text("Please enter a collection name")
-          })
-        }
-      }
-
-//      Button("Add Examples") {
-//        let item1 = Item(context: moc)
-//        item1.name = "Star Destroyer"
-//        item1.origin = Category(context: moc)
-//        item1.origin?.name = "Lego"
-//
-//        let item2 = Item(context: moc)
-//        item2.name = "Gunship"
-//        item2.origin = Category(context: moc)
-//        item2.origin?.name = "Lego"
-//
-//        let item3 = Item(context: moc)
-//        item3.name = "AtAt"
-//        item3.origin = Category(context: moc)
-//        item3.origin?.name = "Lego"
-//
-//        let item4 = Item(context: moc)
-//        item4.name = "GoXLR"
-//        item4.origin = Category(context: moc)
-//        item4.origin?.name = "Tech"
-//
-//        try? moc.save()
-//      }
     }
   }
 
