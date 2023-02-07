@@ -10,7 +10,10 @@ import SwiftUI
 struct CategoryView: View {
   @Environment(\.managedObjectContext) var moc
   @FetchRequest var items: FetchedResults<Item>
+
   var category = ""
+  @State private var imageFullscreen = false
+  @State private var currentImage: UIImage?
 
   init(filter: String, category: String) {
     _items = FetchRequest<Item>(sortDescriptors: [SortDescriptor(\.name)], predicate: NSPredicate(format: "origin.name == '\(filter)'"))
@@ -42,6 +45,10 @@ struct CategoryView: View {
                   .scaledToFit()
                   .cornerRadius(10)
                   .frame(maxWidth: 170, alignment: .trailing)
+                  .onTapGesture {
+                    currentImage = UIImage(data: item.image!)
+                    imageFullscreen.toggle()
+                  }
               } else {
                 Spacer()
               }
@@ -53,6 +60,21 @@ struct CategoryView: View {
                   .navigationBarTitleDisplayMode(.inline)
               }
               .tint(.green)
+            }
+            .sheet(isPresented: $imageFullscreen) {
+              VStack {
+                HStack {
+                  Spacer()
+                  Button("Close") {
+                    imageFullscreen.toggle()
+                  }.padding()
+                }
+                Spacer()
+                Image(uiImage: UIImage(data: item.image!)!)
+                  .resizable()
+                  .scaledToFit()
+                Spacer()
+              }
             }
           }
           .onDelete(perform: deleteItem)
