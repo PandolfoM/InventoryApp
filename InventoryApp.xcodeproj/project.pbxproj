@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711DCA0B299190DC0086C9A2 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711DCA0A299190DC0086C9A2 /* SplashView.swift */; };
 		71AFAEFA298DE9230065DD3C /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */; };
 		71AFAEFB298DE9230065DD3C /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */; };
 		71AFAEFC298DE9230065DD3C /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AFAEF8298DE9230065DD3C /* Item+CoreDataClass.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		711DCA0A299190DC0086C9A2 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		71667853296E3CE9003E6805 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = "<group>"; };
 		71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -77,11 +79,12 @@
 				71AFAEF9298DE9230065DD3C /* Item+CoreDataProperties.swift */,
 				71DF7372296DD4170033C6EF /* CategoryView.swift */,
 				71DF7371296DD4170033C6EF /* ContentView.swift */,
+				71CD854E298DA203001D202D /* DataController.swift */,
 				71DF7370296DD4170033C6EF /* InventoryApp.swift */,
 				71DF7374296DD4170033C6EF /* ItemAdd.swift */,
 				71DF736F296DD4170033C6EF /* ItemEdit.swift */,
+				711DCA0A299190DC0086C9A2 /* SplashView.swift */,
 				71CD854B298DA17C001D202D /* Stockify.xcdatamodeld */,
-				71CD854E298DA203001D202D /* DataController.swift */,
 				71DF7365296DD32A0033C6EF /* Assets.xcassets */,
 				71DF7367296DD32A0033C6EF /* Preview Content */,
 			);
@@ -171,6 +174,7 @@
 				71AFAEFB298DE9230065DD3C /* Category+CoreDataProperties.swift in Sources */,
 				71AFAEFA298DE9230065DD3C /* Category+CoreDataClass.swift in Sources */,
 				71DF7376296DD4170033C6EF /* InventoryApp.swift in Sources */,
+				711DCA0B299190DC0086C9A2 /* SplashView.swift in Sources */,
 				71DF7377296DD4170033C6EF /* ContentView.swift in Sources */,
 				71CD854D298DA17C001D202D /* Stockify.xcdatamodeld in Sources */,
 				71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */,
@@ -312,7 +316,7 @@
 				INFOPLIST_FILE = InventoryApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Stockify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app would like to use your camera to take photos on your items";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
@@ -349,7 +353,7 @@
 				INFOPLIST_FILE = InventoryApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Stockify;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app would like to use your camera to take photos on your items";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";

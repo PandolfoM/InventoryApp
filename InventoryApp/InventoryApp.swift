@@ -14,8 +14,9 @@ struct InventoryApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationStack {
-        ContentView()
-          .navigationTitle("Inventory")
+        SplashView()
+//        ContentView()
+//          .navigationTitle("Inventory")
       }.environment(\.managedObjectContext, dataController.container.viewContext)
     }
   }
