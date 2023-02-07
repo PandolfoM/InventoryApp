@@ -17,6 +17,7 @@ struct ItemAdd: View {
   @State private var itemCount: Int16 = 1
   @State private var selectedItem: PhotosPickerItem?
   @State private var selectedPhotoData: Data?
+  @State private var isCameraOpen = false
 
   var body: some View {
     VStack {
@@ -32,6 +33,11 @@ struct ItemAdd: View {
         Section("Image") {
           PhotosPicker(selection: $selectedItem, matching: .images) {
             Label("Select a photo", systemImage: "photo")
+          }
+          Button {
+            isCameraOpen.toggle()
+          } label: {
+            Label("Capture Photo", systemImage: "camera")
           }
           .onChange(of: selectedItem) { newItem in
             Task {
@@ -66,6 +72,9 @@ struct ItemAdd: View {
           dismiss()
         }
       }
+    }
+    .sheet(isPresented: $isCameraOpen) {
+      ImagePicker(selectedImageData: $selectedPhotoData).ignoresSafeArea()
     }
   }
 }

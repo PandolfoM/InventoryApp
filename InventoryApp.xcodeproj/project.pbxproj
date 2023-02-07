@@ -21,6 +21,7 @@
 		71DF7377296DD4170033C6EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7371296DD4170033C6EF /* ContentView.swift */; };
 		71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7372296DD4170033C6EF /* CategoryView.swift */; };
 		71DF737A296DD4170033C6EF /* ItemAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7374296DD4170033C6EF /* ItemAdd.swift */; };
+		71E0CC8529929A1500696435 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E0CC8429929A1500696435 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		71DF7371296DD4170033C6EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		71DF7372296DD4170033C6EF /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		71DF7374296DD4170033C6EF /* ItemAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAdd.swift; sourceTree = "<group>"; };
+		71E0CC8429929A1500696435 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				71CD854E298DA203001D202D /* DataController.swift */,
 				71DF7370296DD4170033C6EF /* InventoryApp.swift */,
 				71DF7374296DD4170033C6EF /* ItemAdd.swift */,
+				71E0CC8429929A1500696435 /* ImagePicker.swift */,
 				71DF736F296DD4170033C6EF /* ItemEdit.swift */,
 				711DCA0A299190DC0086C9A2 /* SplashView.swift */,
 				71CD854B298DA17C001D202D /* Stockify.xcdatamodeld */,
@@ -169,6 +172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71E0CC8529929A1500696435 /* ImagePicker.swift in Sources */,
 				71AFAEFC298DE9230065DD3C /* Item+CoreDataClass.swift in Sources */,
 				71DF7375296DD4170033C6EF /* ItemEdit.swift in Sources */,
 				71AFAEFB298DE9230065DD3C /* Category+CoreDataProperties.swift in Sources */,

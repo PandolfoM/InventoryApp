@@ -15,8 +15,6 @@ struct InventoryApp: App {
     WindowGroup {
       NavigationStack {
         SplashView()
-//        ContentView()
-//          .navigationTitle("Inventory")
       }.environment(\.managedObjectContext, dataController.container.viewContext)
     }
   }
