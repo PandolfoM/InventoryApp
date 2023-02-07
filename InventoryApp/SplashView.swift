@@ -11,7 +11,6 @@ struct SplashView: View {
   @State private var isActive = false
   @State private var rotation = 0.0
   @State private var size = 1.0
-  let customRed: Color = .init(red: 51/255, green: 99/255, blue: 214/255)
 
   var body: some View {
     if isActive {
