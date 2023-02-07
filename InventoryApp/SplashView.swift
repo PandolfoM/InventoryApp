@@ -31,7 +31,7 @@ struct SplashView: View {
       }
       .onAppear {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-          withAnimation(.easeInOut(duration: 0.3)) {
+          withAnimation(.interpolatingSpring(mass: 0.6, stiffness: 1, damping: 0.8, initialVelocity: 8.5)) {
             self.size = 0.8
           }
         }
