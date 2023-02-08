@@ -40,7 +40,7 @@ struct RecentlyAdded: View {
               .font(.headline)
               .frame(width: 170, alignment: .leading)
             Spacer()
-            timeCheck(item: item)
+            item.date.timeAgo()
               .foregroundColor(.gray)
               .font(.subheadline)
               .frame(width: 170, alignment: .leading)
@@ -60,36 +60,20 @@ struct RecentlyAdded: View {
       }
     }
   }
+}
 
-  func timeCheck(item: Item) -> Text {
-    let dateDiff = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: item.date, to: Date())
-    let minute = dateDiff.minute ?? 0
-    let hour = dateDiff.hour ?? 0
-    let day = dateDiff.day ?? 0
-    let month = dateDiff.month ?? 0
-    let year = dateDiff.year ?? 0
-    if minute < 1 {
+extension Date {
+  func timeAgo() -> Text {
+    let formatter = DateComponentsFormatter()
+    formatter.unitsStyle = .full
+    formatter.allowedUnits = [.year, .month, .day, .hour, .minute]
+    formatter.zeroFormattingBehavior = .dropAll
+    formatter.maximumUnitCount = 1
+    let final = String(format: formatter.string(from: self, to: Date()) ?? "", locale: .current)
+    if final == "0 minutes" {
       return Text("Now")
-    } else if minute == 1 {
-      return Text("1 Minute ago")
-    } else if minute > 1 {
-      return Text("\(minute) Minutes ago")
-    } else if hour == 1 {
-      return Text("1 Hour ago")
-    } else if hour > 1 {
-      return Text("\(hour) Hours ago")
-    } else if day == 1 {
-      return Text("1 Day ago")
-    } else if day > 1 {
-      return Text("\(day) Days ago")
-    } else if month == 1 {
-      return Text("1 Month ago")
-    } else if month > 1 {
-      return Text("\(month) Months ago")
-    } else if year == 1 {
-      return Text("1 Year ago")
     } else {
-      return Text("\(year) Years ago")
+      return Text("\(final) ago")
     }
   }
 }
