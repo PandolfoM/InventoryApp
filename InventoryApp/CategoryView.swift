@@ -25,57 +25,15 @@ struct CategoryView: View {
       if items.count > 0 {
         List {
           ForEach(items, id: \.self) { item in
-            HStack {
-              VStack {
-                Text("x\(item.count)")
-                  .foregroundColor(.blue)
-                  .frame(width: 170, alignment: .leading)
-                  .font(.subheadline)
-                Spacer()
-                Text(item.name ?? "Unknown")
-                  .frame(width: 170, alignment: .leading)
-                  .font(.headline)
-                Spacer()
-              }
-              Spacer()
-              if item.image != nil {
-                Image(uiImage: UIImage(data: item.image!)!)
-                  .renderingMode(.original)
-                  .resizable()
-                  .scaledToFit()
-                  .cornerRadius(10)
-                  .frame(maxWidth: 170, alignment: .trailing)
-                  .onTapGesture {
-                    currentImage = UIImage(data: item.image!)
-                    imageFullscreen.toggle()
-                  }
-              } else {
-                Spacer()
-              }
-            }
-            .swipeActions(edge: .leading) {
-              NavigationLink("Edit") {
-                ItemEdit(filter: item.wrappedName)
-                  .navigationTitle("Edit Item")
-                  .navigationBarTitleDisplayMode(.inline)
-              }
-              .tint(.green)
-            }
-            .sheet(isPresented: $imageFullscreen) {
-              VStack {
-                HStack {
-                  Spacer()
-                  Button("Close") {
-                    imageFullscreen.toggle()
-                  }.padding()
+            ItemList(item: item, showCategory: false)
+              .swipeActions(edge: .leading) {
+                NavigationLink("Edit") {
+                  ItemEdit(filter: item.wrappedName)
+                    .navigationTitle("Edit Item")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
-                Spacer()
-                Image(uiImage: UIImage(data: item.image!)!)
-                  .resizable()
-                  .scaledToFit()
-                Spacer()
+                .tint(.green)
               }
-            }
           }
           .onDelete(perform: deleteItem)
         }

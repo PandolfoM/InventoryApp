@@ -22,40 +22,10 @@ struct RecentlyAdded: View {
   }
 
   var body: some View {
-    Section("Recently Added") {
-      ForEach(items.prefix(5), id: \.self) { item in
-        HStack {
-          VStack {
-            HStack {
-              Text("x\(item.count)")
-                .foregroundColor(.gray)
-                .font(.subheadline)
-              Text("\(item.origin?.wrappedName ?? "Unknown")")
-                .foregroundColor(.gray)
-                .font(.subheadline)
-
-            }.frame(maxWidth: 170, alignment: .leading)
-            Spacer()
-            Text(item.name ?? "Unknown")
-              .font(.headline)
-              .frame(width: 170, alignment: .leading)
-            Spacer()
-            item.date.timeAgo()
-              .foregroundColor(.gray)
-              .font(.subheadline)
-              .frame(width: 170, alignment: .leading)
-          }.frame(width: 170, alignment: .leading)
-          Spacer()
-          if item.image != nil {
-            Image(uiImage: UIImage(data: item.image!)!)
-              .renderingMode(.original)
-              .resizable()
-              .scaledToFit()
-              .cornerRadius(10)
-              .frame(maxWidth: 170, alignment: .trailing)
-          } else {
-            Spacer()
-          }
+    if items.count > 0 {
+      Section("Recently Added") {
+        ForEach(items.prefix(5), id: \.self) { item in
+          ItemList(item: item)
         }
       }
     }
