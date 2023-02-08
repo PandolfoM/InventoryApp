@@ -22,6 +22,7 @@
 		71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7372296DD4170033C6EF /* CategoryView.swift */; };
 		71DF737A296DD4170033C6EF /* ItemAdd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DF7374296DD4170033C6EF /* ItemAdd.swift */; };
 		71E0CC8529929A1500696435 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E0CC8429929A1500696435 /* ImagePicker.swift */; };
+		71E0CC872992CD1E00696435 /* RecentlyAdded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71E0CC862992CD1E00696435 /* RecentlyAdded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		71DF7372296DD4170033C6EF /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		71DF7374296DD4170033C6EF /* ItemAdd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAdd.swift; sourceTree = "<group>"; };
 		71E0CC8429929A1500696435 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		71E0CC862992CD1E00696435 /* RecentlyAdded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyAdded.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				71667853296E3CE9003E6805 /* Info.plist */,
+				71E0CC882992CD9A00696435 /* Components */,
 				71AFAEF6298DE9230065DD3C /* Category+CoreDataClass.swift */,
 				71AFAEF7298DE9230065DD3C /* Category+CoreDataProperties.swift */,
 				71AFAEF8298DE9230065DD3C /* Item+CoreDataClass.swift */,
@@ -100,6 +103,14 @@
 				71DF7368296DD32A0033C6EF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		71E0CC882992CD9A00696435 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				71E0CC862992CD1E00696435 /* RecentlyAdded.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +192,7 @@
 				711DCA0B299190DC0086C9A2 /* SplashView.swift in Sources */,
 				71DF7377296DD4170033C6EF /* ContentView.swift in Sources */,
 				71CD854D298DA17C001D202D /* Stockify.xcdatamodeld in Sources */,
+				71E0CC872992CD1E00696435 /* RecentlyAdded.swift in Sources */,
 				71DF7378296DD4170033C6EF /* CategoryView.swift in Sources */,
 				71CD854F298DA203001D202D /* DataController.swift in Sources */,
 				71AFAEFD298DE9230065DD3C /* Item+CoreDataProperties.swift in Sources */,

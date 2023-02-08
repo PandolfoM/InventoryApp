@@ -66,6 +66,7 @@ struct ItemAdd: View {
           item.name = itemName
           item.count = itemCount
           item.image = selectedPhotoData
+          item.date = Date.now
           item.origin = Category(context: moc)
           item.origin?.name = category
           try? moc.save()

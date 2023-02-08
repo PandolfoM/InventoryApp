@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
   @Environment(\.managedObjectContext) var moc
   @FetchRequest(sortDescriptors: [SortDescriptor(\.name)]) var categories: FetchedResults<Category>
+
   @State private var isPresented = false
   @State private var isPresented2 = false
   @State private var categoryName = ""
@@ -41,6 +42,7 @@ struct ContentView: View {
               .tint(.green)
             }
           }
+          RecentlyAdded()
         }
         .alert("Edit Collection", isPresented: $isPresented2, actions: {
           TextField("Name", text: $categoryName)

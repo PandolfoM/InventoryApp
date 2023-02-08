@@ -17,6 +17,7 @@ public extension Item {
   @NSManaged var name: String?
   @NSManaged var image: Data?
   @NSManaged var count: Int16
+  @NSManaged var date: Date
   @NSManaged var origin: Category?
 
   internal var wrappedName: String {
